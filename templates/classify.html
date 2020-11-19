@@ -2,7 +2,8 @@
 <html>
 <head>
 	<title>Classify Result</title>
-	<link rel="stylesheet" href="resultStyles.css">
+	<!-- url_for('static',filename='styles/resultStyles.css') -->
+	<link rel="stylesheet" href="{{url_for('static',filename='resultStyles.css')}}">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 </head>
@@ -33,9 +34,9 @@
 	};
 	</script>
 
-	<form method="POST">
-		<button id="classify" class = "center" >Try another picture</button>
-		<h2 id="result"></h2>
+	<form method="POST" action='/classify'>
+		<button id="back" class = "center" name="back">Try another picture</button>
+
 	</form>
 
 </body>

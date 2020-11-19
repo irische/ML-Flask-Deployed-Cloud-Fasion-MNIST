@@ -3,7 +3,7 @@
 <head>
 	<title>Fasion MNIST Classifier</title>
 	<!-- <link rel="stylesheet" link href="/static/css/base.css"> -->
-	<link rel="stylesheet" link href="styles/homeStyles.css">
+	<!-- <link rel="stylesheet" link href="styles/homeStyles.css"> -->
 	<!-- <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/homeStyles.css') }}"> -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<style>
@@ -47,8 +47,8 @@
     <input type="submit" value="Upload Image" name="submit">
 	</form> -->
 
-	<form action="/upload-image" method="POST" enctype="multipart/form-data">
-		<p><input type="file"  accept="image/*" name="image" id="inputImage"  onchange="loadFile(event)" style="display: none;"></p>
+	<form action="/classify" method="POST" enctype="multipart/form-data">
+		<p><input type="file"  accept="image/*" name="inputImage" id="inputImage"  onchange="loadFile(event)" style="display: none;"></p>
 		<p><label for="inputImage" class="custom-file-upload">Upload Image</label></p>
 		<p><img id="output" width="200" /></p>
 		<button type = "submit" id="classify" class = "center" location.href="">Classify</button>

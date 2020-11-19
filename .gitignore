@@ -6,3 +6,4 @@
 **/env
 *.csv
 *.DS_Store
+*.pem
