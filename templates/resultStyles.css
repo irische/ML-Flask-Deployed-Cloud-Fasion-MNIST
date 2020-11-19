@@ -1,0 +1,19 @@
+h1 {
+	/*color: white; */
+	font-size:48px;
+}
+.result {
+	font-size:24px;
+	text-align: center;
+	/*border: 3px solid green;*/
+}
+
+.center {
+	font-size:24px;
+  	margin: 0;
+  	position: absolute;
+  	top: 50%;
+  	left: 50%;
+  	-ms-transform: translate(-50%, -50%);
+  	transform: translate(-50%, -50%);
+}
