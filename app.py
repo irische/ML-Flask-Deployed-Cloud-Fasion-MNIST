@@ -9,6 +9,8 @@ from matplotlib import pyplot as plt
 
 #import keras
 import tensorflow as tf
+
+from numpy import loadtxt
 from keras.models import load_model
 from keras.utils import CustomObjectScope
 from keras.initializers import glorot_uniform
@@ -22,7 +24,8 @@ app = Flask(__name__,static_folder='static',template_folder='templates')
 app.config["IMAGE_UPLOADS"] = "/uploads"
 # load the model, and pass in the custom metric function
 
-loaded_cnn_model = tf.keras.models.load_model("cnn_model")
+loaded_cnn_model = load_model("cnn_model.h5")
+loaded_cnn_model.summary()
 
 # For the root '/' we need to define a function in which we are rendering the template of index.html as default
 # This rendering template is done if it get's any GET Request
@@ -62,9 +65,15 @@ def classify():
             #grey.resize(28,28)
             #print(grey)
             #print(grey.shape)
-            print("Check if works")
             pixel_array = resizeTo(im_grey)
             print(pixel_array)
+            print(pixel_array.shape)
+
+            print("Start Predicting")
+            label = loaded_cnn_model.predict(pixel_array)
+            print(getLabel(label))
+
+
 
             # pixel_array = [(255 - x) * 1.0 / 255.0 for x in pixel_array]
             # pixel_array = np.array(pixel_array)
@@ -89,7 +98,11 @@ def classify():
     # label=loaded_cnn_model.predict([features])
     
     # Returning the response to ajax	
-
+def getLabel(a):
+    labels = ["T-shirt/top", "Trouser", "Pullover", "Dress", "Coat", "Sandal", "Shirt", "Sneaker", "Bag", "Ankle boot"]
+    for i in range(a[0].size):
+        if int(a[0][i]) == 1:
+            return labels[i]
 #Resize image to be 28x28 grayscale
 def resizeTo(im):
 
@@ -118,11 +131,19 @@ def resizeTo(im):
         wleft = int(round(((28 - nwidth) / 2), 0))  # caculate vertical pozition
         newImage.paste(img, (wleft, 4))  # paste resized image on white canvas
 
+
     pixels = np.array(newImage)
     print("Result")
-    print(pixels)
 
+    n = pixels.size
+    result = np.ones((n,1))
+
+    #pixels = np.append(result, pixels)
+    #all_data = np.concatenate((pixels, ones), 1)
+    #pixels = np.hstack((ones,pixels))
+    pixels = pixels.reshape(1, 28, 28, 1)
     print(pixels.shape)
+    print(pixels)
     #plt.imshow()
     return pixels
     
