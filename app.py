@@ -5,10 +5,11 @@ from flask import Flask,render_template,request,send_file,send_from_directory,js
 #import pandas as pd
 import numpy as np
 from PIL import Image, ImageFilter
-from matplotlib import pyplot as plt
+
 
 #import keras
 import tensorflow as tf
+# from matplotlib import pyplot as plt
 
 from numpy import loadtxt
 from keras.models import load_model
@@ -100,8 +101,9 @@ def classify():
     # Returning the response to ajax	
 def getLabel(a):
     labels = ["T-shirt/top", "Trouser", "Pullover", "Dress", "Coat", "Sandal", "Shirt", "Sneaker", "Bag", "Ankle boot"]
+    maxValue = max(a[0])
     for i in range(a[0].size):
-        if int(a[0][i]) == 1:
+        if a[0][i] == maxValue:
             return labels[i]
 #Resize image to be 28x28 grayscale
 def resizeTo(im):
@@ -133,6 +135,9 @@ def resizeTo(im):
 
 
     pixels = np.array(newImage)
+    pixels = pixels/255.0
+    # pixel_array = [(255 - x) * 1.0 / 255.0 for x in pixel_array]
+    # pixels = [(255 - x) * 1.0 / 255.0 for x in pixels]
     print("Result")
 
     n = pixels.size
@@ -142,12 +147,15 @@ def resizeTo(im):
     #all_data = np.concatenate((pixels, ones), 1)
     #pixels = np.hstack((ones,pixels))
     pixels = pixels.reshape(1, 28, 28, 1)
+
     print(pixels.shape)
     print(pixels)
+
     #plt.imshow()
     return pixels
     
 # It is the starting point of code
 if __name__=='__main__':
   # We need to run the app to run the server
-  app.run(debug=True)
+  app.run(host='0.0.0.0',port=8080)
+  # app.run(debug=True)
