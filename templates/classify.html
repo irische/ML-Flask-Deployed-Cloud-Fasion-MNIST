@@ -5,7 +5,50 @@
 	<!-- url_for('static',filename='styles/resultStyles.css') -->
 	<link rel="stylesheet" href="{{url_for('static',filename='resultStyles.css')}}">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<style>
+		h1 {
+			/*color: white; */
+			font-size:48px;
+			color: white;
 
+		}
+		body {
+			background:  linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('static/runaway.jpg');
+			background-size: cover;
+		}
+		.result {
+			font-size:24px;
+			color: white;
+			text-align: center;
+			/*border: 3px solid green;*/
+		}
+
+		.center {
+			font-size:24px;
+		  	margin: 0;
+		  	position: absolute;
+		  	top: 50%;
+		  	left: 50%;
+		  	-ms-transform: translate(-50%, -50%);
+		  	transform: translate(-50%, -50%);
+		}
+
+		.button {
+			/*background-color: #4CAF50; /* Green */*/
+			border: none;
+			color: black;
+			padding: 5px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			margin: 4px 2px;
+			border-radius: 8px;
+			cursor: pointer;
+		}
+	</style>
+	<!-- linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), -->
+	
 </head>
 <body>
 
@@ -38,7 +81,7 @@
 	</script>
 
 	<form method="POST" action='/classify'>
-		<button id="back" class = "center" name="back">Try another picture</button>
+		<button id="back" class = "center button" name="back">Try another picture</button>
 
 	</form>
 
