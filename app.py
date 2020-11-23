@@ -67,12 +67,13 @@ def classify():
             #print(grey)
             #print(grey.shape)
             pixel_array = resizeTo(im_grey)
-            print(pixel_array)
-            print(pixel_array.shape)
+            # print(pixel_array)
+            # print(pixel_array.shape)
 
             print("Start Predicting")
             label = loaded_cnn_model.predict(pixel_array)
-            print(getLabel(label))
+            predicted_label = getLabel(label)
+            print(predicted_label)
 
 
 
@@ -89,7 +90,7 @@ def classify():
             # plt.close()
 
             print("IMAGE is here")
-            return render_template('classify.html')
+            return render_template('classify.html', category = predicted_label)
 
         print("POST METHOD ")
         if "back" in request.form:
@@ -157,5 +158,5 @@ def resizeTo(im):
 # It is the starting point of code
 if __name__=='__main__':
   # We need to run the app to run the server
-  app.run(host='0.0.0.0',port=8080)
-  # app.run(debug=True)
+  # app.run(host='0.0.0.0',port=8080)
+  app.run(debug=True)
