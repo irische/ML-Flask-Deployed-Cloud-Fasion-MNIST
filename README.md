@@ -62,4 +62,26 @@ screen -R deploy python3 app.py
 ssh ubuntu@<YOUR_IP_ADDRESS> 
 ```
 to login to the Ubuntu server
-- Inside the Ubuntu shell, 
+- Inside the Ubuntu shell, first, install tmux and other specified requirements on the Ubuntu shell. 
+```python
+sudo apt update
+sudo apt install python3 python3-pip tmux htop
+```
+- Then, create a directory for the application that you want to deploy.
+```python
+mkdir deployFashionApp
+```
+- Open another terminal, cd to the project folder
+- In the project folder, make sure to have a requirements.txt file . If not, try:
+```python
+pip freeze > requirements.txt
+```
+- Copy the full path of the project folder
+- Use 
+```python
+sudo rsync -rv <FULL_PATH>/ ubuntu@<YOUR_IP_ADDRESS>:/home/ubuntu/deployedapp
+```
+to transfer local project to ubuntu server. In our case, the complete command is:
+```python
+sudo rsync -rv /Users/cheryl/Documents/Data_Systems_Project/ML-Flask-Deployed-Cloud-Fasion-MNIST/ ubuntu@3.19.218.40:/home/ubuntu/deployFashionApp
+```
