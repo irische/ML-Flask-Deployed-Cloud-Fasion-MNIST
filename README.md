@@ -11,7 +11,7 @@ Live Website URL: http://ec2-3-19-218-40.us-east-2.compute.amazonaws.com:8080
 ![alt text](https://github.com/irische/ML-Flask-Deployed-Cloud-Fasion-MNIST/blob/main/weblook.png)
 
 ## Youtube Links
-* Live demo and code walkthrough: 
+* Live demo and code walkthrough: https://youtu.be/u8NQHpXrR5E
 * Overview and structure of project: 
 
 ## Instructions for Website Navigation
