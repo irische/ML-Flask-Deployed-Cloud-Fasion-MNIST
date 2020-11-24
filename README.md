@@ -85,3 +85,22 @@ to transfer local project to ubuntu server. In our case, the complete command is
 ```python
 sudo rsync -rv /Users/cheryl/Documents/Data_Systems_Project/ML-Flask-Deployed-Cloud-Fasion-MNIST/ ubuntu@3.19.218.40:/home/ubuntu/deployFashionApp
 ```
+- Go back to the Ubuntu Shell, cd to deployFashionApp
+- Use tmux to keep the app runnning in background. First, create a new session, runningApp is the name of the session:
+```python
+tmux new -s runningApp
+```
+- after been redirected to the tmux session, install all requirements for the app:
+```python
+pip3 install -r requirements.txt
+```
+- Run the app:
+```python
+python3 app.py
+```
+, then the link is created
+- To keep this session running, detach it by Pressing cmd+B, release, than press D
+- Now the app is ready for Continuous Deployment! Loguo the server would not influence access to the website. If want to go back to the session later, attach to the session created earlier:
+```python
+tmux attach -t runningApp
+```
