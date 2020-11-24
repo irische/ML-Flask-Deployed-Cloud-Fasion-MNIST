@@ -56,12 +56,17 @@ screen -R deploy python3 app.py
 ## Set up Continuous Integration/Continuous Deployment
 - Refereed to this Document to Deploy Flask App on EC2a: https://www.twilio.com/blog/deploy-flask-python-app-aws
 - We chose Ubuntu server, add 8 Gib storage when setup. 
+![alt text](https://github.com/irische/ML-Flask-Deployed-Cloud-Fasion-MNIST/blob/main/screenshots/ec2Instance.png)
 - When setting security group, "Type" was set to all type, and "Source" is anywhere to ensure everyone can have access.
-- After saving fashion.pem and ssh it to the EC2 instance, use: 
+![alt text](https://github.com/irische/ML-Flask-Deployed-Cloud-Fasion-MNIST/blob/main/screenshots/securityGroup.png)
+- After saving fashion.pem and ssh it to the EC2 instance,
+![alt text](https://github.com/irische/ML-Flask-Deployed-Cloud-Fasion-MNIST/blob/main/screenshots/keyPair.png)
+use: 
 ```python
 ssh ubuntu@<YOUR_IP_ADDRESS> 
 ```
 to login to the Ubuntu server
+![alt text](https://github.com/irische/ML-Flask-Deployed-Cloud-Fasion-MNIST/blob/main/screenshots/ubuntuLogin.png)
 - Inside the Ubuntu shell, first, install tmux and other specified requirements on the Ubuntu shell. 
 ```python
 sudo apt update
@@ -71,6 +76,7 @@ sudo apt install python3 python3-pip tmux htop
 ```python
 mkdir deployFashionApp
 ```
+![alt text](https://github.com/irische/ML-Flask-Deployed-Cloud-Fasion-MNIST/blob/main/screenshots/projectFolder.png)
 - Open another terminal, cd to the project folder
 - In the project folder, make sure to have a requirements.txt file . If not, try:
 ```python
@@ -90,6 +96,7 @@ sudo rsync -rv /Users/cheryl/Documents/Data_Systems_Project/ML-Flask-Deployed-Cl
 ```python
 tmux new -s runningApp
 ```
+![alt text](https://github.com/irische/ML-Flask-Deployed-Cloud-Fasion-MNIST/blob/main/screenshots/inSession.png)
 - after been redirected to the tmux session, install all requirements for the app:
 ```python
 pip3 install -r requirements.txt
@@ -98,8 +105,10 @@ pip3 install -r requirements.txt
 ```python
 python3 app.py
 ```
-, then the link is created
-- To keep this session running, detach it by Pressing cmd+B, release, than press D
+, then the link 8080 is created. replace the 0.0.0.0 with server ip address
+![alt text](https://github.com/irische/ML-Flask-Deployed-Cloud-Fasion-MNIST/blob/main/screenshots/runInSession.png)
+- To keep this session running, detach it by Pressing control+B, release, than press D
+![alt text](https://github.com/irische/ML-Flask-Deployed-Cloud-Fasion-MNIST/blob/main/screenshots/detach.png)
 - Now the app is ready for Continuous Deployment! Loguo the server would not influence access to the website. If want to go back to the session later, attach to the session created earlier:
 ```python
 tmux attach -t runningApp
