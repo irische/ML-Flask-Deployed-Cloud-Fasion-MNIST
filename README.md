@@ -72,6 +72,7 @@ to login to the Ubuntu server
 sudo apt update
 sudo apt install python3 python3-pip tmux htop
 ```
+![alt text](https://github.com/irische/ML-Flask-Deployed-Cloud-Fasion-MNIST/blob/main/screenshots/tmuxInstall.png)
 - Then, create a directory for the application that you want to deploy.
 ```python
 mkdir deployFashionApp
