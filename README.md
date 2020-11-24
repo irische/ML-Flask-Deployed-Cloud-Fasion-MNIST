@@ -42,10 +42,10 @@ python3 app.py
 Create EC2 Instance: https://docs.aws.amazon.com/efs/latest/ug/gs-step-one-create-ec2-resources.html
 - Connect to your EC2 instance
 ```python
-sudo chmod 600 fashionMNIST.pem
+sudo chmod 600 fashion.pem
 ```
 ```python
-ssh -i "fashionMNIST.pem" ubuntu@ec2<your ec2>.compute.amazonaws.com
+ssh -i "fashion.pem" ubuntu@ec2<your ec2>.compute.amazonaws.com
 ```
 ```python
 make install
@@ -54,4 +54,12 @@ make install
 screen -R deploy python3 app.py
 ```
 ## Set up Continuous Integration/Continuous Deployment
-
+- Refereed to this Document to Deploy Flask App on EC2a: https://www.twilio.com/blog/deploy-flask-python-app-aws
+- We chose Ubuntu server, add 8 Gib storage when setup. 
+- When setting security group, "Type" was set to all type, and "Source" is anywhere to ensure everyone can have access.
+- After saving fashion.pem and ssh it to the EC2 instance, use: 
+```python
+ssh ubuntu@<YOUR_IP_ADDRESS> 
+```
+to login to the Ubuntu server
+- Inside the Ubuntu shell, 
