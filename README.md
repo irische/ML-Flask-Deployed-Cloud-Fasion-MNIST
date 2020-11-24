@@ -1,3 +1,57 @@
 # ML-Flask-Deployed-Cloud-Fasion-MNIST
 
+Deploy Flask Machine Learning Application on AWS EC2.
+
 We used the Fashion MNIST dataset provided by [Zalando Research](https://www.kaggle.com/zalando-research/fashionmnist)
+## Introduction
+Welcome to Fashion MNIST classification system built by Chenyue Liang and Qianqian Che. Our web interface is clean and visually pleasing to users where users can upload image of clothes to get classification result for the genre. This website is deployed onto AWS EC2 with flask app and has Tensorflow CNN Machine Learning model for the backend. Front end scripts include HTML and Javascript. We had an emphasis on AWS deployment and CI/CD to better configure and change this project along the way. We struggled with some problems during dumping the model and deploying the model, and we will list them along with their solutions at the end. You can find the live URL for our website and instructions for running and setting up continuous deployment on AWS below. Also don't hesitate to watch our demo and presentation videos below for a walkthrough.
+
+Live Website URL: http://ec2-3-19-218-40.us-east-2.compute.amazonaws.com:8080
+
+![alt text](https://github.com/irische/ML-Flask-Deployed-Cloud-Fasion-MNIST/blob/main/weblook.png)
+
+## Youtube Links
+* Live demo and code walkthrough: 
+* Overview and structure of project: 
+
+## Instructions for Website Navigation
+* Step 1: Click "Upload Image" to upload a .png or .jpg format image of clothe
+* Step 2: Click classify to proceed
+* Step 3: The website moves to second webpage to display the genre of the clothe in the image
+* Step 4: Click "Try another picture" to go back to previous page if you would like to classify another clothe image
+
+## To Run Locally, Follow These Steps
+- Step 1: Clone github repository:
+```python
+git clone https://github.com/irische/ML-Flask-Deployed-Cloud-Fasion-MNIST.git
+```
+- Step 2: Change direction to cloned repo
+```python
+cd ML-Flask-Deployed-Cloud-Fasion-MNIST/
+```
+- Step 3: Install requirements
+```python
+make install
+```
+- Stpe 4: Run flask app locally and copy the link displayed on console to open in a browser for our website
+```python
+python3 app.py
+```
+## Create AWS EC2 instance
+- Fllow instructions of this document to create and launch EC2 instance
+Create EC2 Instance: https://docs.aws.amazon.com/efs/latest/ug/gs-step-one-create-ec2-resources.html
+- Connect to your EC2 instance
+```python
+sudo chmod 600 fashionMNIST.pem
+```
+```python
+ssh -i "fashionMNIST.pem" ubuntu@ec2<your ec2>.compute.amazonaws.com
+```
+```python
+make install
+```
+```python
+screen -R deploy python3 app.py
+```
+## Set up Continuous Integration/Continuous Deployment
+
