@@ -19,6 +19,8 @@ Live Website URL: http://ec2-3-19-218-40.us-east-2.compute.amazonaws.com:8080
 * Step 2: Click classify to proceed
 * Step 3: The website moves to second webpage to display the genre of the clothe in the image
 * Step 4: Click "Try another picture" to go back to previous page if you would like to classify another clothe image
+## Architecture
+![alt text](https://github.com/irische/ML-Flask-Deployed-Cloud-Fasion-MNIST/blob/main/screenshots/flowChart.png)
 
 ## To Run Locally, Follow These Steps
 - Step 1: Clone github repository:
