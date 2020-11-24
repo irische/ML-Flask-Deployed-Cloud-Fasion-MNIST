@@ -2,20 +2,14 @@
 
 # Load librariesfrom flask 
 from flask import Flask,render_template,request,send_file,send_from_directory,jsonify, redirect, url_for
-#import pandas as pd
 import numpy as np
 from PIL import Image, ImageFilter
-
-
-#import keras
 import tensorflow as tf
-# from matplotlib import pyplot as plt
 
 from numpy import loadtxt
 from keras.models import load_model
 from keras.utils import CustomObjectScope
 from keras.initializers import glorot_uniform
-#from tensorflow.python.keras import losses
 
     
 # instantiate flask 
@@ -23,8 +17,8 @@ app = Flask(__name__,static_folder='static',template_folder='templates')
 
 #Define a directory of image
 app.config["IMAGE_UPLOADS"] = "/uploads"
-# load the model, and pass in the custom metric function
 
+# load the model, and pass in the custom metric function
 loaded_cnn_model = load_model("cnn_model.h5")
 loaded_cnn_model.summary()
 
@@ -52,60 +46,31 @@ def index():
 
 @app.route('/classify',methods=['POST','GET'])
 def classify():
-    # if request.method=='GET':
-    #     return redirect(url_for("main"))
+
     if request.method=='POST':
-        print("CLASSIFY POST")
-        print(request.url)
-        print(url_for('index'))
         if request.files:
-            print("Got image!")
             image = request.files['inputImage']
             im_grey = Image.open(image).convert('L')
             grey = np.array(im_grey)
-            #grey.resize(28,28)
-            #print(grey)
-            #print(grey.shape)
+            
             pixel_array = resizeTo(im_grey)
-            # print(pixel_array)
-            # print(pixel_array.shape)
 
-            print("Start Predicting")
             label = loaded_cnn_model.predict(pixel_array)
             predicted_label = getLabel(label)
-            print(predicted_label)
 
-
-
-            # pixel_array = [(255 - x) * 1.0 / 255.0 for x in pixel_array]
-            # pixel_array = np.array(pixel_array)
-            # #X = np.random.random((28, 28))
-            # plt.axis('off')
-            # plt.close()
-            # plt.imshow(pixel_array.reshape((28,28)))
-            # #plt.imshow(pixel_array, cmap="gray")
-            # plt.savefig('MNIST_IMAGE.png')#save MNIST image
-            # plt.show()
-            # plt.axis('off')
-            # plt.close()
-
-            print("IMAGE is here")
             return render_template('classify.html', category = predicted_label)
 
-        print("POST METHOD ")
         if "back" in request.form:
             return redirect(url_for('index'))
     
-    # # Predicting the label for the features collected
-    # label=loaded_cnn_model.predict([features])
     
-    # Returning the response to ajax	
 def getLabel(a):
     labels = ["T-shirt/top", "Trouser", "Pullover", "Dress", "Coat", "Sandal", "Shirt", "Sneaker", "Bag", "Ankle boot"]
     maxValue = max(a[0])
     for i in range(a[0].size):
         if a[0][i] == maxValue:
             return labels[i]
+
 #Resize image to be 28x28 grayscale
 def resizeTo(im):
 
@@ -136,23 +101,12 @@ def resizeTo(im):
 
 
     pixels = np.array(newImage)
-    pixels = pixels/255.0
-    # pixel_array = [(255 - x) * 1.0 / 255.0 for x in pixel_array]
-    # pixels = [(255 - x) * 1.0 / 255.0 for x in pixels]
-    print("Result")
 
     n = pixels.size
     result = np.ones((n,1))
 
-    #pixels = np.append(result, pixels)
-    #all_data = np.concatenate((pixels, ones), 1)
-    #pixels = np.hstack((ones,pixels))
     pixels = pixels.reshape(1, 28, 28, 1)
 
-    print(pixels.shape)
-    print(pixels)
-
-    #plt.imshow()
     return pixels
     
 # It is the starting point of code
