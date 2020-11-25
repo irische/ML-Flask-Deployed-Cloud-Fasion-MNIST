@@ -12,7 +12,7 @@ Live Website URL: http://ec2-3-19-218-40.us-east-2.compute.amazonaws.com:8080
 
 ## Youtube Links
 * Live demo and code walkthrough: https://youtu.be/u8NQHpXrR5E
-* Overview and structure of project: 
+* Overview and structure of project: https://youtu.be/RqU8cM1YdWM
 
 ## Instructions for Website Navigation
 * Step 1: Click "Upload Image" to upload a .png or .jpg format image of clothe
